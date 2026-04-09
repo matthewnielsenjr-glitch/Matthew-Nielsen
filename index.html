@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alex Johnson | Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <style>
+    :root {
+      --green: #2d6a4f;
+      --green-light: #52b788;
+      --cream: #fafaf7;
+      --dark: #1a1a1a;
+    }
+    body { font-family: 'Source Sans 3', sans-serif; background: var(--cream); color: var(--dark); }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+    .navbar { background: var(--dark) !important; }
+    .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff !important; }
+    .nav-link { color: rgba(255,255,255,0.8) !important; }
+    .nav-link:hover { color: var(--green-light) !important; }
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #2d4a3e 100%);
+      color: white;
+      padding: 100px 0 80px;
+    }
+    .hero-initials {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: var(--green-light);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; color: white; font-weight: 700;
+      margin: 0 auto 1.5rem;
+    }
+    .section-title {
+      color: var(--green);
+      border-bottom: 2px solid var(--green-light);
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .card { border: none; box-shadow: 0 2px 15px rgba(0,0,0,0.07); border-radius: 12px; }
+    .skill-badge {
+      background: var(--green);
+      color: white;
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin: 3px;
+    }
+    .timeline-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--green-light);
+      margin-top: 6px; flex-shrink: 0;
+    }
+    .timeline-line {
+      border-left: 2px solid var(--green-light);
+      margin-left: 5px;
+      padding-left: 20px;
+      flex: 1;
+    }
+    footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 2rem 0; }
+    .social-icon { color: rgba(255,255,255,0.7); font-size: 1.4rem; margin: 0 8px; transition: color 0.2s; }
+    .social-icon:hover { color: var(--green-light); }
+    .btn-green { background: var(--green); color: white; border: none; border-radius: 8px; padding: 10px 28px; }
+    .btn-green:hover { background: var(--green-light); color: white; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Alex Johnson</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#resume">Résumé</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="scratch.html" target="_blank">My Golf Page</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero text-center" id="about">
+  <div class="container">
+    <div class="hero-initials">AJ</div>
+    <h1 class="display-5 fw-bold">Alex Johnson</h1>
+    <p class="lead mb-1" style="color: var(--green-light);">Business Student &amp; Avid Golfer</p>
+    <p class="text-white-50 mb-4">University of Utah · Class of 2026</p>
+    <a href="#resume" class="btn btn-green me-2">View Résumé</a>
+    <a href="scratch.html" class="btn btn-outline-light">Golf Page</a>
+  </div>
+</section>
+
+<!-- Resume -->
+<section class="py-5" id="resume">
+  <div class="container">
+    <h2 class="section-title">Résumé</h2>
+    <div class="row g-4">
+
+      <!-- Education -->
+      <div class="col-lg-6">
+        <div class="card p-4 h-100">
+          <h4 class="mb-3"><i class="bi bi-mortarboard-fill me-2" style="color:var(--green)"></i>Education</h4>
+          <div class="d-flex gap-3">
+            <div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-line">
+              <h6 class="mb-0">Bachelor of Science, Business Administration</h6>
+              <p class="text-muted mb-1">University of Utah &mdash; Salt Lake City, UT</p>
+              <p class="text-muted small mb-2">Expected May 2026 | GPA: 3.7</p>
+              <p class="mb-0 small">Concentration in Finance &amp; Operations Management. Dean's List four consecutive semesters.</p>
+            </div>
+          </div>
+          <hr/>
+          <div class="d-flex gap-3">
+            <div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-line">
+              <h6 class="mb-0">Alta High School</h6>
+              <p class="text-muted mb-1">Sandy, UT</p>
+              <p class="text-muted small mb-2">Graduated May 2022 | Valedictorian</p>
+              <p class="mb-0 small">Captain, Varsity Golf Team (2020–2022). National Honor Society member.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work Experience -->
+      <div class="col-lg-6">
+        <div class="card p-4 h-100">
+          <h4 class="mb-3"><i class="bi bi-briefcase-fill me-2" style="color:var(--green)"></i>Work Experience</h4>
+          <div class="d-flex gap-3 mb-3">
+            <div><div class="timeline-dot"></div></div>
+            <div class="timeline-line">
+              <h6 class="mb-0">Finance Intern</h6>
+              <p class="text-muted mb-1">Zions Bancorporation · Salt Lake City, UT</p>
+              <p class="text-muted small mb-2">May 2025 – Aug 2025</p>
+              <ul class="small ps-3 mb-0">
+                <li>Assisted analysts with financial modeling and quarterly reporting</li>
+                <li>Automated data pipelines using Python, saving 5 hours/week</li>
+                <li>Presented findings to a team of 12 senior analysts</li>
+              </ul>
+            </div>
+          </div>
+          <div class="d-flex gap-3 mb-3">
+            <div><div class="timeline-dot"></div></div>
+            <div class="timeline-line">
+              <h6 class="mb-0">Golf Shop Assistant</h6>
+              <p class="text-muted mb-1">Bonneville Golf Course · Salt Lake City, UT</p>
+              <p class="text-muted small mb-2">May 2022 – Aug 2024 (Seasonal)</p>
+              <ul class="small ps-3 mb-0">
+                <li>Managed tee-time scheduling for 150+ daily rounds</li>
+                <li>Assisted with club fitting and equipment sales</li>
+                <li>Trained 3 new seasonal employees each summer</li>
+              </ul>
+            </div>
+          </div>
+          <div class="d-flex gap-3">
+            <div><div class="timeline-dot"></div></div>
+            <div class="timeline-line">
+              <h6 class="mb-0">Teaching Assistant – Business Analytics</h6>
+              <p class="text-muted mb-1">University of Utah · Salt Lake City, UT</p>
+              <p class="text-muted small mb-2">Jan 2025 – Present</p>
+              <ul class="small ps-3 mb-0">
+                <li>Hold weekly office hours supporting 60 enrolled students</li>
+                <li>Grade assignments and provide detailed written feedback</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Awards & Honors -->
+      <div class="col-lg-6">
+        <div class="card p-4 h-100">
+          <h4 class="mb-3"><i class="bi bi-trophy-fill me-2" style="color:var(--green)"></i>Awards &amp; Honors</h4>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color:var(--green-light)"></i>Dean's List — 2023, 2024, 2025</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color:var(--green-light)"></i>David Eccles School of Business Scholarship ($8,000)</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color:var(--green-light)"></i>Utah Intercollegiate Golf Association — Low Amateur (2024)</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color:var(--green-light)"></i>State High School Golf Championship — 3rd Place (2022)</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color:var(--green-light)"></i>National Merit Scholar Commendation (2022)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="col-lg-6" id="skills">
+        <div class="card p-4 h-100">
+          <h4 class="mb-3"><i class="bi bi-tools me-2" style="color:var(--green)"></i>Skills</h4>
+          <p class="text-muted small mb-2 fw-semibold text-uppercase">Technical</p>
+          <div class="mb-3">
+            <span class="skill-badge">Microsoft Excel</span>
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">SQL</span>
+            <span class="skill-badge">Tableau</span>
+            <span class="skill-badge">Power BI</span>
+            <span class="skill-badge">HTML/CSS</span>
+          </div>
+          <p class="text-muted small mb-2 fw-semibold text-uppercase">Business</p>
+          <div class="mb-3">
+            <span class="skill-badge">Financial Modeling</span>
+            <span class="skill-badge">Data Analysis</span>
+            <span class="skill-badge">Project Management</span>
+            <span class="skill-badge">Public Speaking</span>
+          </div>
+          <p class="text-muted small mb-2 fw-semibold text-uppercase">Languages</p>
+          <div>
+            <span class="skill-badge">English (Native)</span>
+            <span class="skill-badge">Spanish (Conversational)</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="py-5 bg-white" id="contact">
+  <div class="container text-center">
+    <h2 class="section-title d-inline-block">Get In Touch</h2>
+    <p class="text-muted mb-4">Feel free to reach out about internships, collaborations, or just to talk golf.</p>
+    <a href="mailto:alex.johnson@utah.edu" class="btn btn-green">
+      <i class="bi bi-envelope-fill me-2"></i>alex.johnson@utah.edu
+    </a>
+  </div>
+</section>
+
+<footer class="text-center" id="footer">
+  <div class="container">
+    <div class="mb-3">
+      <a href="https://linkedin.com" class="social-icon"><i class="bi bi-linkedin"></i></a>
+      <a href="https://github.com" class="social-icon"><i class="bi bi-github"></i></a>
+      <a href="https://twitter.com" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+    </div>
+    <p class="mb-0 small">&copy; 2026 Alex Johnson. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
