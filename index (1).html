@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matthew K. Nielsen Jr. | Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <style>
+    :root {
+      --green: #2d6a4f;
+      --green-light: #52b788;
+      --cream: #fafaf7;
+      --dark: #1a1a1a;
+    }
+    body { font-family: 'Source Sans 3', sans-serif; background: var(--cream); color: var(--dark); }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+    .navbar { background: var(--dark) !important; }
+    .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff !important; }
+    .nav-link { color: rgba(255,255,255,0.8) !important; }
+    .nav-link:hover { color: var(--green-light) !important; }
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #2d4a3e 100%);
+      color: white;
+      padding: 100px 0 80px;
+    }
+    .hero-initials {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: var(--green-light);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; color: white; font-weight: 700;
+      margin: 0 auto 1.5rem;
+    }
+    .section-title {
+      color: var(--green);
+      border-bottom: 2px solid var(--green-light);
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .card { border: none; box-shadow: 0 2px 15px rgba(0,0,0,0.07); border-radius: 12px; }
+    .skill-badge {
+      background: var(--green);
+      color: white;
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin: 3px;
+    }
+    .timeline-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--green-light);
+      margin-top: 6px; flex-shrink: 0;
+    }
+    .timeline-line {
+      border-left: 2px solid var(--green-light);
+      margin-left: 5px;
+      padding-left: 20px;
+      flex: 1;
+    }
+    footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 2rem 0; }
+    .social-icon { color: rgba(255,255,255,0.7); font-size: 1.4rem; margin: 0 8px; transition: color 0.2s; }
+    .social-icon:hover { color: var(--green-light); }
+    .btn-green { background: var(--green); color: white; border: none; border-radius: 8px; padding: 10px 28px; }
+    .btn-green:hover { background: var(--green-light); color: white; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Matthew K. Nielsen Jr.</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#resume">Résumé</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="scratch.html">My Golf Page</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero text-center" id="about">
+  <div class="container">
+    <div class="hero-initials">MN</div>
+    <h1 class="display-5 fw-bold">Matthew K. Nielsen Jr.</h1>
+    <p class="lead mb-1" style="color: var(--green-light);">Finance Student &amp; Investment Analyst</p>
+    <p class="text-white-50 mb-4">BYU Marriott School of Business &nbsp;·&nbsp; Class of 2028 &nbsp;·&nbsp; GPA 3.97</p>
+    <a href="#resume" class="btn btn-green me-2">View Résumé</a>
+    <a href="scratch.html" class="btn btn-outline-light">Golf Page</a>
+  </div>
+</section>
+
+<!-- Resume -->
+<section class="py-5" id="resume">
+  <div class="container">
+    <h2 class="section-title">Résumé</h2>
+    <div class="row g-4">
+
+      <!-- Education -->
+      <div class="col-lg-6">
+        <div class="card p-4 h-100">
+          <h4 class="mb-3"><i class="bi bi-mortarboard-fill me-2" style="color:var(--green)"></i>Education</h4>
+          <div class="d-flex gap-3">
+            <div><div class="timeline-dot"></div></div>
+            <div class="timeline-line">
+              <h6 class="mb-0">B.S. in Pre-Business</h6>
+              <p class="text-muted mb-1">Brigham Young University – Marriott School of Business · Provo, UT</p>
+              <p class="text-muted small mb-2">Expected Apr 2028 &nbsp;|&nbsp; GPA: 3.97 / 4.00</p>
+              <ul class="small ps-3 mb-0">
+                <li>Active member, BYU Finance Society</li>
+                <li>Member, Private Banking &amp; Wealth Management Club</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="col-lg-6">
+        <div class="card p-4 h-100">
+          <h4 class="mb-3"><i class="bi bi-briefcase-fill me-2" style="color:var(--green)"></i>Experience</h4>
+
+          <div class="d-flex gap-3 mb-3">
+            <div><div class="timeline-dot"></div></div>
+            <div class="timeline-line">
+              <h6 class="mb-0">Investment Analyst Intern</h6>
+              <p class="text-muted mb-1">Resilient Health Services &nbsp;·&nbsp; Remote</p>
+              <p class="text-muted small mb-2">Jan 2026 – Present</p>
+              <ul class="small ps-3 mb-0">
+                <li>Researched investment opportunities to support CEO-level decisions</li>
+                <li>Assisted in monitoring a $1.1M+ investment account</li>
+                <li>Participated in investor discussions</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3 mb-3">
+            <div><div class="timeline-dot"></div></div>
+            <div class="timeline-line">
+              <h6 class="mb-0">Financial Support Specialist</h6>
+              <p class="text-muted mb-1">Dental Entrepreneurship Organization &nbsp;·&nbsp; Remote</p>
+              <p class="text-muted small mb-2">Aug 2025 – Feb 2026</p>
+              <ul class="small ps-3 mb-0">
+                <li>Consulted with dental practices generating $1.5M+ in annual revenue</li>
+                <li>Handled bookkeeping and financial record maintenance</li>
+                <li>Researched accounts receivable options; recommendations accepted by leadership</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3">
+            <div><div class="timeline-dot"></div></div>
+            <div class="timeline-line">
+              <h6 class="mb-0">Financial Advisor – Job Shadowing</h6>
+              <p class="text-muted mb-1">Legacy Financial Strategies &nbsp;·&nbsp; Ogden, UT</p>
+              <p class="text-muted small mb-2">Aug 2024 – Present</p>
+              <ul class="small ps-3 mb-0">
+                <li>Observed client meetings on investment strategy and retirement planning</li>
+                <li>Gained exposure to portfolio construction and compliance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leadership & Service -->
+      <div class="col-lg-6">
+        <div class="card p-4 h-100">
+          <h4 class="mb-3"><i class="bi bi-people-fill me-2" style="color:var(--green)"></i>Leadership &amp; Service</h4>
+
+          <div class="d-flex gap-3 mb-3">
+            <div><div class="timeline-dot"></div></div>
+            <div class="timeline-line">
+              <h6 class="mb-0">Volunteer Representative</h6>
+              <p class="text-muted mb-1">The Church of Jesus Christ of Latter-day Saints &nbsp;·&nbsp; McAllen, TX</p>
+              <p class="text-muted small mb-2">Aug 2022 – Aug 2024</p>
+              <ul class="small ps-3 mb-0">
+                <li>Directed goal-setting and execution for 150+ full-time volunteers</li>
+                <li>Led biweekly meetings and trainings to improve accountability</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3">
+            <div><div class="timeline-dot"></div></div>
+            <div class="timeline-line">
+              <h6 class="mb-0">Eagle Scout</h6>
+              <p class="text-muted mb-1">Boy Scouts of America &nbsp;·&nbsp; Las Vegas, NV</p>
+              <p class="text-muted small mb-2">2015 – 2020</p>
+              <ul class="small ps-3 mb-0">
+                <li>Led community service project for mental health hospital patients</li>
+                <li>Received "Community Care" award for lasting impact</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Awards & Skills -->
+      <div class="col-lg-6" id="skills">
+        <div class="card p-4 h-100">
+          <h4 class="mb-3"><i class="bi bi-trophy-fill me-2" style="color:var(--green)"></i>Awards &amp; Skills</h4>
+
+          <p class="text-muted small mb-2 fw-semibold text-uppercase">Awards</p>
+          <ul class="list-unstyled mb-3">
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color:var(--green-light)"></i>GoVenture Business Simulation — Top Overall Performance (Highest Profit)</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color:var(--green-light)"></i>Eagle Scout — Boy Scouts of America</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color:var(--green-light)"></i>Community Care Award — BSA Service Project</li>
+          </ul>
+
+          <p class="text-muted small mb-2 fw-semibold text-uppercase">Skills</p>
+          <div class="mb-3">
+            <span class="skill-badge">Microsoft Excel</span>
+            <span class="skill-badge">Financial Modeling</span>
+            <span class="skill-badge">Investment Analysis</span>
+            <span class="skill-badge">Bookkeeping</span>
+            <span class="skill-badge">Fluent Spanish</span>
+            <span class="skill-badge">Team Leadership</span>
+            <span class="skill-badge">Professional Communication</span>
+          </div>
+
+          <p class="text-muted small mb-2 fw-semibold text-uppercase">Interests</p>
+          <div>
+            <span class="skill-badge">Golf</span>
+            <span class="skill-badge">Basketball</span>
+            <span class="skill-badge">Distance Running</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="py-5 bg-white" id="contact">
+  <div class="container text-center">
+    <h2 class="section-title d-inline-block">Get In Touch</h2>
+    <p class="text-muted mb-4">Open to internship opportunities, finance discussions, or just connecting.</p>
+    <a href="mailto:matthewnielsenjr@gmail.com" class="btn btn-green">
+      <i class="bi bi-envelope-fill me-2"></i>matthewnielsenjr@gmail.com
+    </a>
+    <p class="text-muted mt-3 small">(210) 904-7606 &nbsp;·&nbsp; Las Vegas, NV</p>
+  </div>
+</section>
+
+<footer class="text-center">
+  <div class="container">
+    <div class="mb-3">
+      <a href="https://linkedin.com" class="social-icon"><i class="bi bi-linkedin"></i></a>
+      <a href="https://github.com" class="social-icon"><i class="bi bi-github"></i></a>
+      <a href="mailto:matthewnielsenjr@gmail.com" class="social-icon"><i class="bi bi-envelope-fill"></i></a>
+    </div>
+    <p class="mb-0 small">&copy; 2026 Matthew K. Nielsen Jr. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

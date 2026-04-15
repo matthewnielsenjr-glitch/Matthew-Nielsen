@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Golf Trivia Challenge | Matthew Nielsen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green-dark: #1b4332;
+      --green: #2d6a4f;
+      --green-mid: #40916c;
+      --green-light: #52b788;
+      --green-pale: #d8f3dc;
+      --sand: #f4e9d0;
+      --flag: #e63946;
+      --gold: #f4a261;
+      --text: #1a1a1a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--green-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(82,183,136,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(64,145,108,0.1) 0%, transparent 50%);
+    }
+    .back-link { width:100%; max-width:680px; padding:10px 0 5px; }
+    .back-link a { color:var(--green-light); text-decoration:none; font-size:0.9rem; letter-spacing:0.04em; }
+    .back-link a:hover { color:white; }
+    .game-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 680px;
+      width: 100%;
+      margin-top: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .game-header { text-align:center; margin-bottom:30px; }
+    .game-header h1 { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--green-dark); margin-bottom:4px; }
+    .game-header p { color:#666; font-size:0.95rem; }
+    .hud {
+      display:flex; justify-content:space-between; align-items:center;
+      background:var(--green-pale); border-radius:12px; padding:12px 20px; margin-bottom:24px;
+    }
+    .hud-item { text-align:center; }
+    .hud-label { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--green); margin-bottom:2px; }
+    .hud-value { font-size:1.3rem; font-weight:700; color:var(--green-dark); }
+    .progress-bar-bg { background:#e0e0e0; border-radius:10px; height:6px; margin-bottom:24px; overflow:hidden; }
+    .progress-bar-fill { height:100%; background:linear-gradient(90deg,var(--green-mid),var(--green-light)); border-radius:10px; transition:width 0.5s ease; }
+    .category-badge {
+      display:inline-block; background:var(--green-pale); color:var(--green-dark);
+      font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+      border-radius:20px; padding:4px 14px; margin-bottom:12px;
+    }
+    .difficulty { margin-bottom:16px; }
+    .difficulty span { font-size:0.75rem; color:#999; text-transform:uppercase; letter-spacing:0.05em; }
+    .star { color:var(--gold); font-size:1rem; }
+    .star.empty { color:#ddd; }
+    .question-text {
+      font-family:'Playfair Display',serif; font-size:1.35rem;
+      color:var(--text); line-height:1.55; margin-bottom:28px; min-height:80px;
+    }
+    .options-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:24px; }
+    .option-btn {
+      background:white; border:2px solid #e0e0e0; border-radius:12px;
+      padding:16px 14px; font-family:'Raleway',sans-serif; font-size:0.95rem;
+      font-weight:600; color:var(--text); cursor:pointer; text-align:left;
+      transition:all 0.18s ease; line-height:1.3;
+    }
+    .option-btn:hover:not(:disabled) { border-color:var(--green-light); background:var(--green-pale); transform:translateY(-2px); }
+    .option-btn.correct { background:#d1fae5; border-color:#10b981; color:#065f46; }
+    .option-btn.wrong { background:#fee2e2; border-color:#ef4444; color:#7f1d1d; }
+    .option-btn:disabled { cursor:not-allowed; }
+    .feedback {
+      border-radius:10px; padding:14px 18px; font-size:0.92rem;
+      font-weight:600; margin-bottom:20px; display:none; line-height:1.5;
+    }
+    .feedback.correct-msg { background:#d1fae5; color:#065f46; border-left:4px solid #10b981; display:block; }
+    .feedback.wrong-msg { background:#fee2e2; color:#7f1d1d; border-left:4px solid #ef4444; display:block; }
+    .next-btn {
+      width:100%; background:var(--green); color:white; border:none;
+      border-radius:12px; padding:16px; font-family:'Raleway',sans-serif;
+      font-size:1rem; font-weight:700; letter-spacing:0.05em;
+      cursor:pointer; transition:background 0.2s; display:none;
+    }
+    .next-btn:hover { background:var(--green-mid); }
+    .results-screen { text-align:center; padding:20px 0; }
+    .results-screen .trophy { font-size:4rem; margin-bottom:12px; }
+    .results-screen h2 { font-family:'Playfair Display',serif; font-size:2rem; color:var(--green-dark); margin-bottom:8px; }
+    .score-big { font-size:3.5rem; font-weight:700; color:var(--green); margin:10px 0; }
+    .score-label { font-size:1rem; color:#666; margin-bottom:20px; }
+    .grade-badge { display:inline-block; border-radius:30px; padding:8px 24px; font-size:1.1rem; font-weight:700; margin-bottom:28px; }
+    .results-summary { background:var(--green-pale); border-radius:12px; padding:16px 20px; margin-bottom:24px; text-align:left; }
+    .results-summary p { font-size:0.9rem; color:var(--green-dark); margin:4px 0; }
+    .play-again-btn {
+      background:var(--green); color:white; border:none; border-radius:12px;
+      padding:16px 48px; font-family:'Raleway',sans-serif; font-size:1rem;
+      font-weight:700; cursor:pointer; margin-bottom:12px; transition:background 0.2s;
+    }
+    .play-again-btn:hover { background:var(--green-mid); }
+    .start-screen { text-align:center; padding:20px 0; }
+    .start-screen p { color:#555; line-height:1.7; margin-bottom:20px; }
+    .diff-label { font-size:0.85rem; color:#666; margin-bottom:10px; font-weight:600; }
+    .diff-btn {
+      background:white; border:2px solid #ddd; border-radius:30px;
+      padding:8px 20px; margin:4px; cursor:pointer;
+      font-family:'Raleway',sans-serif; font-size:0.9rem; font-weight:600; transition:all 0.2s;
+    }
+    .diff-btn:hover, .diff-btn.active { background:var(--green); color:white; border-color:var(--green); }
+    .start-btn {
+      background:var(--green); color:white; border:none; border-radius:12px;
+      padding:18px 56px; font-family:'Raleway',sans-serif; font-size:1.1rem;
+      font-weight:700; cursor:pointer; transition:background 0.2s; letter-spacing:0.05em;
+    }
+    .start-btn:hover { background:var(--green-mid); }
+    @media (max-width:520px) {
+      .game-card { padding:24px 18px; }
+      .options-grid { grid-template-columns:1fr; }
+      .question-text { font-size:1.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="back-link">
+  <a href="scratch.html">&#8592; Back to Golf Page</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="index.html" style="color:var(--green-light); text-decoration:none; font-size:0.9rem;">&#127968; Portfolio</a>
+</div>
+
+<div class="game-card">
+  <div class="game-header">
+    <h1>&#9971; Golf Trivia</h1>
+    <p>Challenge your knowledge of golf history, rules, and legends</p>
+  </div>
+
+  <!-- START SCREEN -->
+  <div id="startScreen" class="start-screen">
+    <p>Think you know golf? From Augusta to St Andrews, from Tiger to Nicklaus — this quiz covers it all. 10 questions, instant feedback, and a grade at the end. Good luck!</p>
+    <div style="margin-bottom:20px;">
+      <div class="diff-label">Select Difficulty:</div>
+      <button class="diff-btn active" onclick="setDiff(this,'all')">All Levels</button>
+      <button class="diff-btn" onclick="setDiff(this,'easy')">&#11088; Beginner</button>
+      <button class="diff-btn" onclick="setDiff(this,'medium')">&#11088;&#11088; Intermediate</button>
+      <button class="diff-btn" onclick="setDiff(this,'hard')">&#11088;&#11088;&#11088; Expert</button>
+    </div>
+    <button class="start-btn" onclick="startGame()">Tee It Up &#9971;</button>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="gameScreen" style="display:none;">
+    <div class="hud">
+      <div class="hud-item">
+        <div class="hud-label">Score</div>
+        <div class="hud-value" id="scoreDisplay">0</div>
+      </div>
+      <div class="hud-item">
+        <div class="hud-label">Question</div>
+        <div class="hud-value" id="qNumDisplay">1/10</div>
+      </div>
+      <div class="hud-item">
+        <div class="hud-label">Streak &#128293;</div>
+        <div class="hud-value" id="streakDisplay">0</div>
+      </div>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+    </div>
+    <div id="categoryBadge" class="category-badge"></div>
+    <div id="difficultyStars" class="difficulty"></div>
+    <div class="question-text" id="questionText"></div>
+    <div class="options-grid" id="optionsGrid"></div>
+    <div class="feedback" id="feedbackMsg"></div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next Question &#8594;</button>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="resultsScreen" class="results-screen" style="display:none;"></div>
+</div>
+
+<script>
+const ALL_QUESTIONS = [
+  { category:"History", difficulty:"easy", q:"Which country is considered the birthplace of golf?", options:["England","Scotland","Ireland","United States"], answer:1, fact:"Golf originated in 15th-century Scotland. The Old Course at St Andrews has records of play dating back to 1457." },
+  { category:"Majors", difficulty:"easy", q:"Which major championship is played at Augusta National Golf Club each April?", options:["The Open Championship","The US Open","The Masters","The PGA Championship"], answer:2, fact:"The Masters is held every April at Augusta National, co-designed by Bobby Jones and Alister MacKenzie, opened in 1933." },
+  { category:"Scoring", difficulty:"easy", q:"What is the term for completing a hole in one stroke UNDER par?", options:["Eagle","Bogey","Birdie","Albatross"], answer:2, fact:"A birdie is 1-under par. Eagle is 2-under, bogey is 1-over, and an albatross (double eagle) is 3-under — extremely rare!" },
+  { category:"Legends", difficulty:"easy", q:"Tiger Woods' nickname is 'Tiger' — but what is his real first name?", options:["Theodore","Eldrick","Edmund","Elliot"], answer:1, fact:"Tiger Woods was born Eldrick Tont Woods. His father Earl gave him the nickname 'Tiger' after a Vietnamese soldier and friend." },
+  { category:"Rules", difficulty:"easy", q:"How many clubs is a golfer allowed to carry during a round?", options:["12","14","16","18"], answer:1, fact:"Rule 4.1b limits players to a maximum of 14 clubs. Carrying more results in a two-stroke penalty per hole, up to four strokes." },
+  { category:"Majors", difficulty:"medium", q:"Who holds the record for the most career major championships with 18?", options:["Tiger Woods","Arnold Palmer","Jack Nicklaus","Gary Player"], answer:2, fact:"Jack Nicklaus — 'The Golden Bear' — won 18 majors between 1962 and 1986, a record Tiger Woods (15 majors) has not yet broken." },
+  { category:"Courses", difficulty:"medium", q:"What is the famous stretch of holes 11, 12, and 13 at Augusta National called?", options:["Death Valley","The Devil's Triangle","Amen Corner","The Bermuda Holes"], answer:2, fact:"Amen Corner was named by writer Herbert Warren Wind in 1958. Rae's Creek has caused heartbreak for countless Masters contenders." },
+  { category:"History", difficulty:"medium", q:"In what year did golf return to the Summer Olympics after a 112-year absence?", options:["2012","2016","2020","2004"], answer:1, fact:"Golf returned to the Olympics at the 2016 Rio Games. Great Britain's Justin Rose won the first men's gold medal of the modern era." },
+  { category:"Equipment", difficulty:"medium", q:"How many dimples does a regulation golf ball typically have?", options:["100–200","200–300","300–500","500–800"], answer:2, fact:"Most golf balls have 300–500 dimples. They create turbulence that reduces drag and helps the ball fly farther and straighter." },
+  { category:"Rules", difficulty:"medium", q:"What does a hole-in-one on a par 4 score relative to par?", options:["3 under (double eagle)","2 under (eagle)","1 under (birdie)","Even par"], answer:0, fact:"On a par 4, a hole-in-one is 3 strokes under par — technically a 'double eagle.' Gene Sarazen made the most famous one at Augusta in 1935." },
+  { category:"Legends", difficulty:"hard", q:"Who was the first player to win all four professional major championships in a career (Career Grand Slam)?", options:["Ben Hogan","Gene Sarazen","Gary Player","Sam Snead"], answer:1, fact:"Gene Sarazen completed the Career Grand Slam in 1935, becoming the first to win all four professional majors." },
+  { category:"History", difficulty:"hard", q:"What year was the Royal and Ancient Golf Club of St Andrews founded?", options:["1702","1754","1810","1860"], answer:1, fact:"The R&A was founded in 1754 by 22 noblemen. It governed golf worldwide (outside the US and Mexico) until 2004." },
+  { category:"Majors", difficulty:"hard", q:"In what year was The Open Championship (British Open) first played?", options:["1860","1895","1934","1916"], answer:0, fact:"The first Open Championship was held in 1860 at Prestwick Golf Club, Scotland. Willie Park Sr. won with a score of 174 over 36 holes." },
+  { category:"Courses", difficulty:"hard", q:"How many US Opens has Pebble Beach Golf Links hosted as of 2024?", options:["3","4","6","8"], answer:2, fact:"Pebble Beach has hosted 6 US Opens (1972, 1982, 1992, 2000, 2010, 2019). Tiger's 15-stroke win in 2000 is one of golf's greatest performances." },
+  { category:"Legends", difficulty:"hard", q:"Which golfer holds the record for most PGA Tour wins in history?", options:["Jack Nicklaus","Arnold Palmer","Tiger Woods","Sam Snead"], answer:3, fact:"Sam Snead holds the record with 82 PGA Tour wins — tied with Tiger Woods as of 2024. Snead won across an incredible 30-year span." }
+];
+
+let selectedDiff = 'all';
+let questions = [];
+let current = 0, score = 0, streak = 0, answered = false;
+
+function setDiff(btn, diff) {
+  document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedDiff = diff;
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startGame() {
+  let pool = selectedDiff === 'all' ? ALL_QUESTIONS : ALL_QUESTIONS.filter(q => q.difficulty === selectedDiff);
+  if (pool.length < 10) pool = ALL_QUESTIONS;
+  questions = shuffle(pool).slice(0, 10);
+  current = 0; score = 0; streak = 0;
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('gameScreen').style.display = 'block';
+  showQuestion();
+}
+
+function showQuestion() {
+  answered = false;
+  const q = questions[current];
+  document.getElementById('qNumDisplay').textContent = `${current+1}/10`;
+  document.getElementById('scoreDisplay').textContent = score;
+  document.getElementById('streakDisplay').textContent = streak;
+  document.getElementById('progressBar').style.width = `${(current/10)*100}%`;
+  document.getElementById('categoryBadge').textContent = q.category;
+  const diffMap = { easy:1, medium:2, hard:3 };
+  const stars = diffMap[q.difficulty] || 1;
+  let starsHtml = '';
+  for (let i = 1; i <= 3; i++) starsHtml += `<span class="${i<=stars?'star':'star empty'}">&#11088;</span>`;
+  document.getElementById('difficultyStars').innerHTML = `<span style="font-size:0.75rem;color:#999;text-transform:uppercase;letter-spacing:0.05em;margin-right:6px;">${q.difficulty}</span>${starsHtml}`;
+  document.getElementById('questionText').textContent = q.q;
+  document.getElementById('feedbackMsg').className = 'feedback';
+  document.getElementById('feedbackMsg').textContent = '';
+  document.getElementById('nextBtn').style.display = 'none';
+  const grid = document.getElementById('optionsGrid');
+  grid.innerHTML = '';
+  const shuffledOpts = shuffle(q.options.map((text, i) => ({ text, orig: i })));
+  shuffledOpts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = opt.text;
+    btn.onclick = () => selectAnswer(btn, opt.orig === q.answer, q.fact, shuffledOpts, q.answer, grid);
+    grid.appendChild(btn);
+  });
+}
+
+function selectAnswer(clickedBtn, isCorrect, fact, shuffledOpts, correctIdx, grid) {
+  if (answered) return;
+  answered = true;
+  grid.querySelectorAll('.option-btn').forEach((btn, i) => {
+    btn.disabled = true;
+    if (shuffledOpts[i].orig === correctIdx) btn.classList.add('correct');
+  });
+  const fb = document.getElementById('feedbackMsg');
+  if (isCorrect) {
+    clickedBtn.classList.add('correct');
+    score++; streak++;
+    const bonus = streak >= 3 ? ' &#128293; Hot streak!' : '';
+    fb.className = 'feedback correct-msg';
+    fb.innerHTML = `&#10004; Correct!${bonus} &mdash; ${fact}`;
+  } else {
+    clickedBtn.classList.add('wrong');
+    streak = 0;
+    fb.className = 'feedback wrong-msg';
+    fb.innerHTML = `&#10008; Not quite. &mdash; ${fact}`;
+  }
+  document.getElementById('scoreDisplay').textContent = score;
+  document.getElementById('streakDisplay').textContent = streak;
+  document.getElementById('nextBtn').style.display = 'block';
+  document.getElementById('nextBtn').textContent = current < 9 ? 'Next Question →' : 'See Results ⛳';
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= 10) { showResults(); return; }
+  showQuestion();
+}
+
+function showResults() {
+  document.getElementById('gameScreen').style.display = 'none';
+  const pct = Math.round((score / 10) * 100);
+  let trophy, grade, gradeStyle, msg;
+  if (score === 10) { trophy='🏆'; grade='HOLE IN ONE!'; msg='Perfect score! You are a true golf aficionado.'; gradeStyle='background:#fef9c3;color:#854d0e;'; }
+  else if (score >= 8) { trophy='🦅'; grade='EAGLE'; msg="Outstanding! You know your golf inside and out."; gradeStyle='background:#d1fae5;color:#065f46;'; }
+  else if (score >= 6) { trophy='🐦'; grade='BIRDIE'; msg='Good round! Solid overall with just a few gaps.'; gradeStyle='background:#dcfce7;color:#166534;'; }
+  else if (score >= 4) { trophy='⛳'; grade='PAR'; msg="Right on par! Keep studying and you'll be shooting under soon."; gradeStyle='background:#e0f2fe;color:#0c4a6e;'; }
+  else { trophy='😅'; grade='BOGEY'; msg='Time to hit the practice range! Golf knowledge takes time to build.'; gradeStyle='background:#fee2e2;color:#7f1d1d;'; }
+  const rs = document.getElementById('resultsScreen');
+  rs.innerHTML = `
+    <div class="trophy">${trophy}</div>
+    <h2>Round Complete!</h2>
+    <div class="score-big">${score}/10</div>
+    <div class="score-label">${pct}% correct</div>
+    <div class="grade-badge" style="${gradeStyle}">${grade}</div>
+    <div class="results-summary">
+      <p>&#127919; You answered <strong>${score} out of 10</strong> questions correctly.</p>
+      <p>&#128218; ${msg}</p>
+    </div>
+    <button class="play-again-btn" onclick="playAgain()">Play Again &#9971;</button><br/>
+    <a href="scratch.html" style="display:inline-block;margin-top:10px;color:var(--green);font-size:0.9rem;text-decoration:none;">&#8592; Back to Golf Page</a>
+  `;
+  rs.style.display = 'block';
+}
+
+function playAgain() {
+  document.getElementById('resultsScreen').style.display = 'none';
+  document.getElementById('startScreen').style.display = 'block';
+}
+</script>
+</body>
+</html>

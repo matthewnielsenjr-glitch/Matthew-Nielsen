@@ -1,0 +1,197 @@
+/* Matthew Nielsen - Golf Scratch Page Stylesheet */
+
+/* ── Variables ── */
+:root {
+  --fairway: #2d6a4f;
+  --fairway-light: #52b788;
+  --rough: #1b4332;
+  --sand: #f4e9d0;
+  --flag: #e63946;
+  --gold: #f4a261;
+  --text-dark: #1a1a1a;
+  --text-mid: #444;
+  --text-light: #777;
+}
+
+/* ── Base ── */
+body {
+  font-family: 'Lora', Georgia, serif;
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  background-color: #f0f7f1;
+}
+
+/* ── Background ── */
+.page-bg {
+  background: linear-gradient(160deg, #d8f3dc 0%, #f0f7f1 40%, #b7e4c7 100%);
+  min-height: 100vh;
+}
+
+/* ── Navigation ── */
+.site-nav {
+  background-color: var(--rough);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-nav a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  margin: 0 14px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.site-nav a:hover {
+  color: var(--fairway-light);
+}
+
+/* ── Hero ── */
+.hero-section {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background: var(--rough);
+  color: white;
+}
+
+.hero-section h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.4rem;
+  color: var(--fairway-light);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.hero-section p {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* ── Section Headings ── */
+.section-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.9rem;
+  color: var(--rough);
+  border-left: 5px solid var(--fairway-light);
+  padding-left: 16px;
+  margin-bottom: 1.4rem;
+}
+
+/* ── Layout Divs ── */
+.content-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-block {
+  background: white;
+  border-radius: 14px;
+  padding: 40px;
+  margin: 40px 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin: 36px 0;
+}
+
+.media-block {
+  background: var(--sand);
+  border-radius: 14px;
+  padding: 32px;
+  margin: 40px 0;
+}
+
+/* ── Images ── */
+.golf-img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
+
+.img-caption {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  text-align: center;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* ── Lists ── */
+.styled-list ol {
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--text-mid);
+  padding-left: 1.5rem;
+}
+
+.styled-list ul {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  color: var(--fairway);
+}
+
+/* ── Font Colors ── */
+.text-green {
+  color: var(--fairway);
+}
+
+.text-flag {
+  color: var(--flag);
+  font-weight: 700;
+}
+
+.highlight-stat {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--fairway);
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* ── Anchor target offset ── */
+.anchor-target {
+  scroll-margin-top: 80px;
+}
+
+/* ── Tableau ── */
+.tableau-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid var(--fairway-light);
+}
+
+/* ── Footer ── */
+.site-footer {
+  background: var(--rough);
+  color: rgba(255,255,255,0.65);
+  text-align: center;
+  padding: 28px 20px;
+  font-size: 0.9rem;
+  margin-top: 60px;
+}
+
+.site-footer a {
+  color: var(--fairway-light);
+  text-decoration: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .two-col { grid-template-columns: 1fr; }
+  .hero-section h1 { font-size: 2.2rem; }
+  .section-block { padding: 24px 18px; }
+}
